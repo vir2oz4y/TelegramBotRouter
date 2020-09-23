@@ -22,7 +22,7 @@ namespace TelegramBotRouter.Cd
         {
             addition = _addition;
             addition.CheckAddition();
-            path = _path;
+            path = _path;   
 
             if (IsNewDirectory())
             {
