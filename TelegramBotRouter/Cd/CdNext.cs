@@ -6,14 +6,14 @@ namespace TelegramBotRouter.Cd
     {
         Path path;
         Addition addition;
-        public Path NextDirectory(Path LastPath, Addition _addition) //следующая дерриктория из текущей
+        public Path NextDirectory(Path LastPath, Addition _addition) //следующая дирриктория из текущей
         {
             path = LastPath;
             addition = _addition;
 
             Path newPath = new Path();
 
-            if (IsExistsDir(CreateNextPath())) //если новая дерриктория существует то меняем текущую на новую
+            if (IsExistsDir(CreateNextPath())) //если новая дирриктория существует то меняем текущую на новую
             {
                 newPath.path = CreateNextPath();
                 return newPath;
@@ -27,7 +27,7 @@ namespace TelegramBotRouter.Cd
 
         private string CreateNextPath()
         {
-            return path.path  + addition.addition.Substring(1, addition.addition.Length - 1);//создали путь следующей дерриктории
+            return path.path  + addition.addition.Substring(1, addition.addition.Length - 1);//создали путь следующей дирриктории
         }
 
         private bool IsExistsDir(string path)

@@ -10,10 +10,12 @@ namespace TelegramBotRouter
         {
             List<ICommand> commands = Commands.commands;
             BotSettings botSettings = new BotSettings();
+            Result result;
             Path path = new Path();
             Query query_analyzer ;// получаем данные из текстбокса
             Addition addition;
             Command thisCommand;
+            
 
             botSettings.FileExists();
 
@@ -22,20 +24,21 @@ namespace TelegramBotRouter
 
             while (true)
             {
-                Console.WriteLine(path.path);
+                Console.Write(path.path+" -->");
+                result = new Result();
                 query_analyzer = new Query(Console.ReadLine());// считали команду
                 addition = query_analyzer.ThisAddition();
                 thisCommand = query_analyzer.ThisCommand();
 
-                foreach(var command in commands)
+                foreach (var command in commands)
                 {
-                    if (thisCommand.command==command.CommandName())
+                    if (thisCommand.command == command.CommandName)
                     {
-                        command.Start(addition,ref path);
+                        command.Start(addition, ref path, out result);
                     }
                 }
-
-                
+                result.Show();
+             
             }
         }
     }

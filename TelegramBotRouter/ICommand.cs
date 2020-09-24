@@ -2,7 +2,7 @@
 {
     interface ICommand
     {
-        string CommandName();
-        void Start(Addition _addition, ref Path _path);
+        string CommandName { get;}
+        void Start(Addition _addition, ref Path _path, out Result result);
     }
 }

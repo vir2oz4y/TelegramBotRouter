@@ -6,19 +6,16 @@ namespace TelegramBotRouter.Cd
     {
         private Addition addition;
         private Path path;
+        private Result result= new Result();
         CdPrevious cdPrevious = new CdPrevious();
         CdNext cdNext = new CdNext();
         CdNew cdNew = new CdNew();
 
-        private string commandName = "cd";
 
-        public string CommandName()
-        {
-            return commandName;
-        }
+        string ICommand.CommandName => "cd";
 
 
-        public void Start(Addition _addition, ref Path _path)
+        public void Start(Addition _addition, ref Path _path, out Result _result)
         {
             addition = _addition;
             addition.CheckAddition();
@@ -39,8 +36,8 @@ namespace TelegramBotRouter.Cd
                 path = cdNext.NextDirectory(path, addition);
             }
 
-
-
+            result.relultAfterCommand = "Переход выполнен!";
+            _result = result;
             _path = path;
         }
 
@@ -53,7 +50,7 @@ namespace TelegramBotRouter.Cd
                 return false;
             }
 
-            return Directory.Exists(path.path + "\\" + addition.addition) ? true : false;
+            return Directory.Exists(addition.addition) ? true : false;
         }
 
         private bool IsPreviousDirectory()

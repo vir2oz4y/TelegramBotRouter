@@ -5,7 +5,7 @@ namespace TelegramBotRouter.Cd
     {
         public Path NewDirectory(Path path, Addition addition)
         {
-            if (Directory.Exists(path.path+addition.addition))
+            if (Directory.Exists(addition.addition))
             {
                 path.path = addition.addition;
             }

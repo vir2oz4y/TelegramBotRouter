@@ -10,7 +10,7 @@ namespace TelegramBotRouter.Cd
         {
             path = LastPath;
 
-            if (IsFirstDir())// если это начальная дерриктория возвращаем путь который был
+            if (IsFirstDir())// если это начальная дирриктория возвращаем путь который был
             {
                 return path;
             }
