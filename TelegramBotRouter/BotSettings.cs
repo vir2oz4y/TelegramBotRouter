@@ -16,6 +16,7 @@ namespace TelegramBotRouter
 
         private void CreateFile()
         {
+            Console.WriteLine("Пример текущей директории: "+Directory.GetCurrentDirectory());
             string newFilePath;
             Console.WriteLine("Введите начальную деррикторию: ");
             newFilePath = Console.ReadLine();
