@@ -24,7 +24,7 @@ namespace TelegramBotRouter
             return false;
         }
 
-        public void FromFile(BotSettings settings)
+        public void FromFile(DirectorySetting settings)
         {
             path = File.ReadAllText(settings.filePath);// читает путь из файла
         }

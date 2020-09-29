@@ -3,6 +3,6 @@
     interface ICommand
     {
         string CommandName { get;}
-        void Start(Addition _addition, ref Path _path, out Result result);
+        void Start(Addition _addition, ref Path _path, out Result _result);
     }
 }

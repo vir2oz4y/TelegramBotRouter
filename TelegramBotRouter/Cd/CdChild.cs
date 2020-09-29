@@ -2,7 +2,7 @@
 
 namespace TelegramBotRouter.Cd
 {
-    class CdNext
+    class CdChild
     {
         Path path;
         Addition addition;
@@ -30,7 +30,7 @@ namespace TelegramBotRouter.Cd
             return path.path  + addition.addition.Substring(1, addition.addition.Length - 1);//создали путь следующей дирриктории
         }
 
-        private bool IsExistsDir(string path)
+        private bool IsExistsDir(string path)// проверка существования новой директории
         {
             return Directory.Exists(path) ? true : false;
         }

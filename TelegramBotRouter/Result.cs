@@ -24,16 +24,22 @@ namespace TelegramBotRouter
         {
             Console.Clear();
             Console.WriteLine(relultAfterCommand);
-            for (int i = 0; i < resultCommandLs.Count-1; i++)
+
+            if (resultCommandLs.Count==0)
             {
-                Console.WriteLine(resultCommandLs[i]);
+                Console.WriteLine("Директория пуста");
             }
+            else
+            {
+                ShowResultCommandLs();
+            }
+            
             Clear();
         }
 
         private void AddFileInArray(string[] file)
         {
-            for (int i = 0; i < file.Length - 1; i++)
+            for (int i = 0; i < file.Length; i++)
             {
                 resultCommandLs.Add(file[i]);
             }
@@ -41,9 +47,18 @@ namespace TelegramBotRouter
 
         private void AddDirectoriesInArray(string[] directories)
         {
-            for (int i = 0; i < directories.Length-1; i++)
+            for (int i = 0; i < directories.Length; i++)
             {
                 resultCommandLs.Add(directories[i]);
+            }
+        }
+
+
+        private void ShowResultCommandLs()
+        {
+            for (int i = 0; i < resultCommandLs.Count; i++)
+            {
+                Console.WriteLine(resultCommandLs[i]);
             }
         }
     }

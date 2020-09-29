@@ -8,6 +8,7 @@ namespace TelegramBotRouter
         public void ChangeCommand(string query)
         {
             command = query.Split(' ')[0];
+            command=command.ToLower();
         }
     }
 }

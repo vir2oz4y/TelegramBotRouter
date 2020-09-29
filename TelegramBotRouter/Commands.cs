@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using TelegramBotRouter.Cd;
 using TelegramBotRouter.Ls;
+using TelegramBotRouter.Mkdir;
+using TelegramBotRouter.DDir;
 
 namespace TelegramBotRouter
 {
@@ -11,6 +13,8 @@ namespace TelegramBotRouter
         public static void InitializationCommands() {
             commands.Add(new CdCommand());
             commands.Add(new LsCommand());
+            commands.Add(new MkDirCommand());
+            commands.Add(new DDirCommand());
         }
 
     }

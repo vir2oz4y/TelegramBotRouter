@@ -9,7 +9,7 @@ namespace TelegramBotRouter
         static void Main(string[] args)
         {
             List<ICommand> commands = Commands.commands;
-            BotSettings botSettings = new BotSettings();
+            DirectorySetting directorySettings = new DirectorySetting();
             Result result;
             Path path = new Path();
             Query query_analyzer ;// получаем данные из текстбокса
@@ -17,9 +17,9 @@ namespace TelegramBotRouter
             Command thisCommand;
             
 
-            botSettings.FileExists();
+            directorySettings.FileExists();
 
-            path.FromFile(botSettings);
+            path.FromFile(directorySettings);
             Commands.InitializationCommands();
 
             while (true)

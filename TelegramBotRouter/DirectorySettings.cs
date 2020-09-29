@@ -3,7 +3,7 @@ using System.IO;
 
 namespace TelegramBotRouter
 {
-    class BotSettings
+    class DirectorySetting
     {
         private string fileName="Init";
         public bool IsEmpty { get; set; } = false;

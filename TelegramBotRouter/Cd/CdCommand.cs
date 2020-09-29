@@ -7,8 +7,8 @@ namespace TelegramBotRouter.Cd
         private Addition addition;
         private Path path;
         private Result result= new Result();
-        CdPrevious cdPrevious = new CdPrevious();
-        CdNext cdNext = new CdNext();
+        CdParent cdParent = new CdParent();
+        CdChild cdNext = new CdChild();
         CdNew cdNew = new CdNew();
 
 
@@ -28,7 +28,7 @@ namespace TelegramBotRouter.Cd
 
             if (IsPreviousDirectory())
             {
-                path = cdPrevious.PreviousDirectory(path);
+                path = cdParent.PreviousDirectory(path);
             }
 
             if (IsNextDirectory())
