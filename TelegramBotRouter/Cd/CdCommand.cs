@@ -36,7 +36,7 @@ namespace TelegramBotRouter.Cd
                 path = cdNext.NextDirectory(path, addition);
             }
 
-            result.relultAfterCommand = "Переход выполнен!";
+            result.MessageAfterCommand = "Переход выполнен!";
             _result = result;
             _path = path;
         }

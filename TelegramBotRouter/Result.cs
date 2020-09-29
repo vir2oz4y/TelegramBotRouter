@@ -6,7 +6,7 @@ namespace TelegramBotRouter
 {
     class Result
     {
-        public string relultAfterCommand { get; set; } = null;
+        public string MessageAfterCommand { get; set; } = null;
         List<string> resultCommandLs { get; set; } = new List<string>();
 
         public void AddAllInResultCommandLs(string[] file, string[] directories)
@@ -23,9 +23,9 @@ namespace TelegramBotRouter
         public void Show()
         {
             Console.Clear();
-            Console.WriteLine(relultAfterCommand);
+            Console.WriteLine(MessageAfterCommand);
 
-            if (resultCommandLs.Count==0)
+            if (resultCommandLs.Count==0 && MessageAfterCommand== "Список файлов и директорий:")
             {
                 Console.WriteLine("Директория пуста");
             }
@@ -41,7 +41,7 @@ namespace TelegramBotRouter
         {
             for (int i = 0; i < file.Length; i++)
             {
-                resultCommandLs.Add(file[i]);
+                resultCommandLs.Add(DeletePath(file[i]));
             }
         }
 
@@ -49,10 +49,14 @@ namespace TelegramBotRouter
         {
             for (int i = 0; i < directories.Length; i++)
             {
-                resultCommandLs.Add(directories[i]);
+                resultCommandLs.Add(DeletePath(directories[i]));
             }
         }
 
+        private string DeletePath(string fullPath)
+        {
+            return fullPath.Substring(fullPath.LastIndexOf('\\'));
+        }
 
         private void ShowResultCommandLs()
         {

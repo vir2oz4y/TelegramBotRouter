@@ -15,16 +15,16 @@ namespace TelegramBotRouter.Mkdir
             {
                 string currentPath = _path.path + "\\" + addition.addition.Substring(1);
                 Directory.CreateDirectory(currentPath) ;
-                result.relultAfterCommand = $"Директория создана в {_path.path}";
+                result.MessageAfterCommand = $"Директория создана в {_path.path}";
             }
             else if (IsFullNameDir())
             {
                 Directory.CreateDirectory(addition.addition);
-                result.relultAfterCommand = $"Директория создана  {addition.addition}";
+                result.MessageAfterCommand = $"Директория создана  {addition.addition}";
             }
             else
             {
-                result.relultAfterCommand = "Директория не создана";
+                result.MessageAfterCommand = "Директория не создана";
             }
             
             

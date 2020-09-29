@@ -35,6 +35,7 @@ namespace TelegramBotRouter
                     if (thisCommand.command == command.CommandName)
                     {
                         command.Start(addition, ref path, out result);
+                        break;
                     }
                 }
                 result.Show();

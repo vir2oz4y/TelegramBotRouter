@@ -17,7 +17,7 @@ namespace TelegramBotRouter.Ls
                 result.AddAllInResultCommandLs(AllFile(), AllDirectories());
             }
 
-            result.relultAfterCommand = "Список файлов и директорий:";
+            result.MessageAfterCommand = "Список файлов и директорий:";
             _result = result;
         }
 

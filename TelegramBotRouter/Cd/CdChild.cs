@@ -27,7 +27,7 @@ namespace TelegramBotRouter.Cd
 
         private string CreateNextPath()
         {
-            return path.path  + addition.addition.Substring(1, addition.addition.Length - 1);//создали путь следующей дирриктории
+            return path.path  +"\\"+ addition.addition.Substring(1, addition.addition.Length - 1);//создали путь следующей дирриктории
         }
 
         private bool IsExistsDir(string path)// проверка существования новой директории

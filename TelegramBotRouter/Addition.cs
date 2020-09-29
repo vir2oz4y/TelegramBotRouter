@@ -17,7 +17,7 @@ namespace TelegramBotRouter
             {
                 addition = query.Split(' ')[1];
             }
-            catch (IndexOutOfRangeException e)
+            catch
             {
                 addition = null;
             }

@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
-namespace TelegramBotRouter.DDir
+namespace TelegramBotRouter.Dir
 {
-    class DDirCommand : ICommand
+    class DDirCommand : ICommand //удаляет пустую папку
     {
         public string CommandName => "ddir";
 
@@ -12,11 +13,11 @@ namespace TelegramBotRouter.DDir
             try
             {
                 Directory.Delete(_path.path + "\\" + _addition.addition);
-                result.relultAfterCommand = "Директория удалена";
+                result.MessageAfterCommand = "Директория удалена";
             }
-            catch
+            catch (Exception e)
             {
-                result.relultAfterCommand = "Директория не существует";
+                result.MessageAfterCommand =e.Message;
             }
             
             _result = result;
