@@ -1,5 +1,7 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
+using TelegramBotRouter.Json;
 
 namespace TelegramBotRouter
 {
@@ -15,7 +17,7 @@ namespace TelegramBotRouter
             Query query_analyzer ;// получаем данные из текстбокса
             Addition addition;
             Command thisCommand;
-            
+
 
             directorySettings.FileExists();
 
@@ -37,9 +39,15 @@ namespace TelegramBotRouter
                         command.Start(addition, ref path, out result);
                         break;
                     }
+                    else
+                    {
+                        result.MessageAfterCommand = "Неизвестная команда";
+                    }
                 }
                 result.Show();
-             
+
+                
+                Console.WriteLine(ApiCreator.Json(path, result));
             }
         }
     }

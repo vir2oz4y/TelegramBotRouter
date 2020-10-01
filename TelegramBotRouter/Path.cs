@@ -8,12 +8,9 @@ namespace TelegramBotRouter
         public Path(string path_)
         {
             path = path_;
-            exist = IsExists();
         }
 
         public string path { get; set; }
-
-        public bool exist { get; }
 
         public bool IsExists()
         {

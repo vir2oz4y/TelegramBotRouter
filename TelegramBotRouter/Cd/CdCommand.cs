@@ -28,21 +28,34 @@ namespace TelegramBotRouter.Cd
             if (IsNewDirectory())
             {
                 path = cdNew.NewDirectory(path, addition);
+                result.MessageAfterCommand = "Переход выполнен!";
+                _result = result;
+                _path = path;
+                return;
             }
 
             if (IsPreviousDirectory())
             {
                 path = cdParent.PreviousDirectory(path);
+                result.MessageAfterCommand = "Переход выполнен!";
+                _result = result;
+                _path = path;
+                return;
             }
 
             if (IsNextDirectory())
             {
                 path = cdNext.NextDirectory(path, addition);
+                result.MessageAfterCommand = "Переход выполнен!";
+                _result = result;
+                _path = path;
+                return;
             }
 
-            result.MessageAfterCommand = "Переход выполнен!";
-            _result = result;
             _path = path;
+            result.MessageAfterCommand = "Переход не выполнен (несуществующая директория)";
+            _result = result;
+            
         }
 
 

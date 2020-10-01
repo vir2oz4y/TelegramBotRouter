@@ -7,10 +7,12 @@ namespace TelegramBotRouter
     class Result
     {
         public string MessageAfterCommand { get; set; } = null;
-        List<string> resultCommandLs { get; set; } = new List<string>();
+        public List<string> resultCommandLs { get; set; } = new List<string>();
+
 
         public void AddAllInResultCommandLs(string[] file, string[] directories)
         {
+            Clear();
             AddDirectoriesInArray(directories);
             AddFileInArray(file);
         }
@@ -34,11 +36,12 @@ namespace TelegramBotRouter
                 ShowResultCommandLs();
             }
             
-            Clear();
+            
         }
 
         public void ShowHelp()
         {
+            Clear();
             for (int i = 0; i < Commands.commands.Count; i++)
             {
                 resultCommandLs.Add (Commands.commands[i].CommandName+" - "+ Commands.commands[i].CommandDescription);
