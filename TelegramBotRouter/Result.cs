@@ -37,6 +37,14 @@ namespace TelegramBotRouter
             Clear();
         }
 
+        public void ShowHelp()
+        {
+            for (int i = 0; i < Commands.commands.Count; i++)
+            {
+                resultCommandLs.Add (Commands.commands[i].CommandName+" - "+ Commands.commands[i].CommandDescription);
+            }
+        }
+
         private void AddFileInArray(string[] file)
         {
             for (int i = 0; i < file.Length; i++)

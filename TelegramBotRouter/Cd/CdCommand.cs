@@ -14,6 +14,10 @@ namespace TelegramBotRouter.Cd
 
         string ICommand.CommandName => "cd";
 
+        public string CommandDescription => "Moves from the specified directory to the specified one\n" +
+            "1. cd .directoryName - moves to child directoty with name directoryName\n" +
+            "2. cd c:\\path - moves to path\n" +
+            "3. cd - moves to Parent directory\n";
 
         public void Start(Addition _addition, ref Path _path, out Result _result)
         {

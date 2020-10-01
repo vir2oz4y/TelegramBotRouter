@@ -1,10 +1,13 @@
 ﻿using System.IO;
 
-namespace TelegramBotRouter.Mkdir
+namespace TelegramBotRouter.Dir
 {
     class MkDirCommand : ICommand
     {
         public string CommandName => "mkdir";
+
+        public string CommandDescription => "Create directory\n";
+
         private Result result = new Result();
         private Addition addition;
         public void Start(Addition _addition, ref Path _path, out Result _result)

@@ -7,6 +7,7 @@ namespace TelegramBotRouter.Dir
     class FDDirCommand : ICommand
     {
         public string CommandName => "fddir";
+        public string CommandDescription => "delete directory if it is not empty with all files\n";
         private Result result = new Result();
         public void Start(Addition _addition, ref Path _path, out Result _result)
         {

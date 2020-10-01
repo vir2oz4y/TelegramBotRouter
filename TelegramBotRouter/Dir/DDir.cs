@@ -7,6 +7,8 @@ namespace TelegramBotRouter.Dir
     {
         public string CommandName => "ddir";
 
+        public string CommandDescription => "delete directory if it is empty\n";
+
         private Result result = new Result();
         public void Start(Addition _addition, ref Path _path, out Result _result)
         {

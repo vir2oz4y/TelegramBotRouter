@@ -5,6 +5,9 @@ namespace TelegramBotRouter.Ls
     class LsCommand : ICommand
     {
         string ICommand.CommandName => "ls";
+
+        public string CommandDescription => "Show all files and directories in path\n";
+
         Result result = new Result();
         Path path;
         
