@@ -25,9 +25,9 @@ namespace TelegramBotRouter
 
         public void CheckAddition()
         {
-            addition.Trim();
+            //addition = addition.Trim();
 
-            if (addition=="")
+            if (addition=="" || addition == null)
             {
                 addition=null;
                 return;
