@@ -4,7 +4,8 @@ using TelegramBotRouter.Cd;
 using TelegramBotRouter.Ls;
 using TelegramBotRouter.Dir;
 using TelegramBotRouter.Help;
-
+using Telegram.Bot;
+using Telegram.Bot.Types;
 
 namespace TelegramBotRouter
 {

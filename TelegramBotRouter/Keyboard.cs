@@ -12,20 +12,31 @@ namespace TelegramBotRouter
         public static InlineKeyboardMarkup GetKeyboard(Api api)
         {
 
-            InlineKeyboardMarkup _keyboard = new InlineKeyboardMarkup(new InlineKeyboardButton[][]
-                                        {
-                                            new []
-                                            {
-                                                    new InlineKeyboardButton{Text="1",CallbackData="2.2" },
-                                                    new InlineKeyboardButton{Text="2",CallbackData="2.2" },
-                                            },
-                                        }
-            );
+            double countCell = 4;
+            double countRow = Math.Ceiling(api.Directories.Count / countCell);
+            InlineKeyboardMarkup _keyboard;
 
-            for (int i = 0; i < api.messageAfterCommand.Length; i++)
+            InlineKeyboardButton[][] button = new InlineKeyboardButton[(int)countRow][];
+
+
+            for (int i = 0; i < countRow; i++)
             {
-                //_keyboard
+                Array.Resize(ref button[i], (int)countCell);
+
+                if (i == countRow - 1 )
+                {
+                    countCell = api.Directories.Count - (countRow - 1) * countCell;
+                    Array.Resize(ref button[i], (int)countCell);
+                }
+
+                for (int j = 0; j < countCell; j++)
+                {
+                    
+                    button[i][j] = new InlineKeyboardButton { Text = api.Directories[i*(int)countCell+j].directory, CallbackData = api.Directories[i * (int)countCell + j].directory, };
+                }
             }
+
+            _keyboard = new InlineKeyboardMarkup(button);
             return _keyboard;
         }
 

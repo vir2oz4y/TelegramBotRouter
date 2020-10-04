@@ -14,7 +14,7 @@ namespace TelegramBotRouter.Help
         public void Start(Addition _addition, ref Path _path, out Result _result)
         {
 
-            result.ShowHelp();
+            result.AddHelpArray();
 
             _result = result;
         }

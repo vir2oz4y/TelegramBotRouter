@@ -23,12 +23,12 @@ namespace TelegramBotRouter.Cd
         {
             addition = _addition;
             addition.CheckAddition();
-            path = _path;   
+            path = _path;
 
+            result.MessageAfterCommand = "Переход выполнен!";
             if (IsNewDirectory())
             {
                 path = cdNew.NewDirectory(path, addition);
-                result.MessageAfterCommand = "Переход выполнен!";
                 _result = result;
                 _path = path;
                 return;
@@ -37,7 +37,6 @@ namespace TelegramBotRouter.Cd
             if (IsPreviousDirectory())
             {
                 path = cdParent.PreviousDirectory(path);
-                result.MessageAfterCommand = "Переход выполнен!";
                 _result = result;
                 _path = path;
                 return;
@@ -46,7 +45,6 @@ namespace TelegramBotRouter.Cd
             if (IsNextDirectory())
             {
                 path = cdNext.NextDirectory(path, addition);
-                result.MessageAfterCommand = "Переход выполнен!";
                 _result = result;
                 _path = path;
                 return;

@@ -17,7 +17,7 @@ namespace TelegramBotRouter.Ls
             path = _path;
             if (_path.IsExists())
             {
-                result.AddAllInResultCommandLs(AllFile(), AllDirectories());
+                result.AddArrays(AllFile(), AllDirectories());
             }
 
             result.MessageAfterCommand = "Список файлов и директорий:";

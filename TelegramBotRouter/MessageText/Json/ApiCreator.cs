@@ -13,42 +13,42 @@ namespace TelegramBotRouter.Json
 
         public static string ApiToString(Api api)
         {
-            string message = "--> " + api.path + "\n" + api.messageAfterCommand + "\n";
+            string message = "--> " + api.Path + "\n" + api.MessageAfterCommand + "\n";
 
-            if (api.messageResult.Count == 0)
+            if (api.Files.Count == 0)
             {
                 return message;
             }
 
             else
             {
-                for (int i = 0; i < api.messageResult.Count; i++)
+                for (int i = 0; i < api.Files.Count; i++)
                 {
-                    message += api.messageResult[i].message + "\n";
+                    message += api.Files[i].file + "\n";
                 }
                 return message;
             }
         }
 
-        public static string JsonToString(string json)
-        {
-            Api api = JsonConvert.DeserializeObject<Api>(json);
-            string message = "--> " + api.path + "\n" + api.messageAfterCommand + "\n";
+        //public static string JsonToString(string json)
+        //{
+        //    Api api = JsonConvert.DeserializeObject<Api>(json);
+        //    string message = "--> " + api.Path + "\n" + api.MessageAfterCommand + "\n";
 
-            if (api.messageResult.Count==0)
-            {
-                return message;
-            }
+        //    if (api.messageResult.Count==0)
+        //    {
+        //        return message;
+        //    }
 
-            else
-            {
-                for (int i = 0; i <api.messageResult.Count; i++)
-                {
-                    message += api.messageResult[i].message + "\n";
-                }
-                return message;
-            }
+        //    else
+        //    {
+        //        for (int i = 0; i <api.messageResult.Count; i++)
+        //        {
+        //            message += api.messageResult[i].message + "\n";
+        //        }
+        //        return message;
+        //    }
 
-        }
+        //}
     }
 }

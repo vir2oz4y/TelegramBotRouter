@@ -15,17 +15,47 @@ namespace TelegramBotRouter
         {
             try
             {
-                addition = query.Split(' ')[1];
+               
+                try
+                {
+                    addition = "";
+                    for (int i = 1; i < query.Split(' ').Length; i++)
+                    {
+                        addition += query.Split(' ')[i]+" ";
+                    }
+                }
+                catch
+                {
+                    addition = query.Split(' ')[1];
+                }
+                
             }
+                
             catch
             {
                 addition = null;
+            }
+
+            try
+            {
+                addition.Trim();
+            }
+            catch
+            {
+
             }
         }
 
         public void CheckAddition()
         {
-            //addition = addition.Trim();
+            try
+            {
+                addition = addition.Trim();
+            }
+            catch
+            {
+
+            }
 
             if (addition=="" || addition == null)
             {

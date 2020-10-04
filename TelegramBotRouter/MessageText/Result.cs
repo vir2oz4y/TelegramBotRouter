@@ -7,10 +7,12 @@ namespace TelegramBotRouter
     class Result
     {
         public string MessageAfterCommand { get; set; } = null;
-        public List<string> resultCommandLs { get; set; } = new List<string>();
+        public List<string> directories { get; set; } = new List<string>();
+        public List<string> files { get; set; } = new List<string>();
+        public List<string> infoHelp { get; set; } = new List<string>();
 
 
-        public void AddAllInResultCommandLs(string[] file, string[] directories)
+        public void AddArrays(string[] file, string[] directories)
         {
             Clear();
             AddDirectoriesInArray(directories);
@@ -19,32 +21,18 @@ namespace TelegramBotRouter
 
         private void Clear()
         {
-            resultCommandLs.Clear();
+            directories.Clear();
+            files.Clear();
+            infoHelp.Clear();
         }
 
-        public void Show()
-        {
-            Console.Clear();
-            Console.WriteLine(MessageAfterCommand);
 
-            if (resultCommandLs.Count==0 && MessageAfterCommand== "Список файлов и директорий:")
-            {
-                Console.WriteLine("Директория пуста");
-            }
-            else
-            {
-                ShowResultCommandLs();
-            }
-            
-            
-        }
-
-        public void ShowHelp()
+        public void AddHelpArray()
         {
             Clear();
             for (int i = 0; i < Commands.commands.Count; i++)
             {
-                resultCommandLs.Add (Commands.commands[i].CommandName+" - "+ Commands.commands[i].CommandDescription);
+                infoHelp.Add (Commands.commands[i].CommandName+" - "+ Commands.commands[i].CommandDescription);
             }
         }
 
@@ -52,29 +40,21 @@ namespace TelegramBotRouter
         {
             for (int i = 0; i < file.Length; i++)
             {
-                resultCommandLs.Add(DeletePath(file[i]));
+                files.Add(DeletePath(file[i]));
             }
         }
 
-        private void AddDirectoriesInArray(string[] directories)
+        private void AddDirectoriesInArray(string[] _directories)
         {
-            for (int i = 0; i < directories.Length; i++)
+            for (int i = 0; i < _directories.Length; i++)
             {
-                resultCommandLs.Add(DeletePath(directories[i]));
+                directories.Add(DeletePath(_directories[i]));
             }
         }
 
         private string DeletePath(string fullPath)
         {
             return fullPath.Substring(fullPath.LastIndexOf('\\'));
-        }
-
-        private void ShowResultCommandLs()
-        {
-            for (int i = 0; i < resultCommandLs.Count; i++)
-            {
-                Console.WriteLine(resultCommandLs[i]);
-            }
         }
     }
 }

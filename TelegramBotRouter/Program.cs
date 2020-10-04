@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 using TelegramBotRouter.Json;
 using System.IO;
 using Telegram.Bot.Types.ReplyMarkups;
+using TelegramBotRouter.Cd;
+using Telegram.Bot.Args;
 
 namespace TelegramBotRouter
 {
@@ -15,9 +18,10 @@ namespace TelegramBotRouter
         static Result result;
         static Path path = new Path();
         static Addition addition;
+        static Api api;
+        static Message msg;
 
-
-        private static readonly TelegramBotClient bot = new TelegramBotClient("1380437409:AAE5n24Rj9qzhSPzLPwYu2ApX");
+        private static readonly TelegramBotClient bot = new TelegramBotClient("1380437409:AAE5n24Rj9qzhSPzLPwYu2ApXymnS3F551U");
         static void Main(string[] args)
         {
             DirectorySetting directorySettings = new DirectorySetting();
@@ -27,19 +31,39 @@ namespace TelegramBotRouter
 
 
 
-            bot.OnMessage += Bot_OnMessage;//события при приходе сообщений
+            bot.OnMessage +=  Bot_OnMessage;//события при приходе сообщений
+            bot.OnCallbackQuery += Bot_OnCallbackQuery;
 
             var me = bot.GetMeAsync().Result;
             Console.Title = me.FirstName;
 
             bot.StartReceiving();
+            Console.WriteLine("Enter для выхода");
             Console.ReadLine();
             bot.StopReceiving();
         }
 
+        private static void Bot_OnCallbackQuery(object sender, Telegram.Bot.Args.CallbackQueryEventArgs e)
+        {
+            NewDirOnCallbackQuery(e);
+        }
+
+        private static void NewDirOnCallbackQuery(CallbackQueryEventArgs e)
+        {
+            CdCommand cdCommand = new CdCommand();
+
+            for (int i = 0; i < api.Directories.Count; i++)
+            {
+                if (e.CallbackQuery.Data == api.Directories[i].directory)
+                {
+                    SendTextMess($"cd .{api.Directories[i].directory}");
+                }
+            }
+        }
+
         private static async void Bot_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e)
         {
-            Message msg = e.Message;
+            msg = e.Message;
             
 
             if (msg==null)
@@ -50,9 +74,8 @@ namespace TelegramBotRouter
 
 
             if (msg.Type==Telegram.Bot.Types.Enums.MessageType.Text)
-            {
-                //await bot.SendTextMessageAsync(msg.Chat.Id, ApiCreator.ApiToString(ReturnApi(msg.Text)));    
-                await bot.SendTextMessageAsync(msg.Chat.Id, ApiCreator.Json(ReturnApi(msg.Text)));
+            {              
+                SendTextMess(msg.Text);
             }
 
 
@@ -67,7 +90,15 @@ namespace TelegramBotRouter
             }
 
         }
+        
+        static async private void SendTextMess(string messageText)
+        {
+            api = ReturnApi(messageText);
+            string message = ApiCreator.ApiToString(api);
+            InlineKeyboardMarkup keyboard = Keyboard.GetKeyboard(api);
 
+            await bot.SendTextMessageAsync(msg.Chat.Id, message, replyMarkup: keyboard);
+        }
      
 
         static Api ReturnApi(string Message) 
@@ -75,7 +106,8 @@ namespace TelegramBotRouter
             
             Command thisCommand;
             Query query_analyzer;
-            
+
+            Console.Clear();
             Console.Write(path.path + " -->");
             result = new Result();
             query_analyzer = new Query(Message);// считали команду
@@ -94,7 +126,6 @@ namespace TelegramBotRouter
                     result.MessageAfterCommand = "Неизвестная команда";
                 }
             }
-            result.Show();
             return new Api(path, result);
         }
     }

@@ -4,8 +4,9 @@ using System.Text;
 
 namespace TelegramBotRouter.Json
 {
-    class MessageResult
+    class Files
     {
-        public string message { get; set; }
+        public string file { get; set; }
+
     }
 }
