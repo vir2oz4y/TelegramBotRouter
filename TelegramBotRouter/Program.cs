@@ -21,7 +21,7 @@ namespace TelegramBotRouter
         static Api api;
         static Message msg;
 
-        private static readonly TelegramBotClient bot = new TelegramBotClient("1380437409:AAE5n24Rj9qzhSPzLPwYu2ApXymnS3F551U");
+        private static readonly TelegramBotClient bot = BotSetting.bot;
         static void Main(string[] args)
         {
             DirectorySetting directorySettings = new DirectorySetting();
@@ -33,6 +33,7 @@ namespace TelegramBotRouter
 
             bot.OnMessage +=  Bot_OnMessage;//события при приходе сообщений
             bot.OnCallbackQuery += Bot_OnCallbackQuery;
+            
 
             var me = bot.GetMeAsync().Result;
             Console.Title = me.FirstName;
@@ -45,20 +46,37 @@ namespace TelegramBotRouter
 
         private static void Bot_OnCallbackQuery(object sender, Telegram.Bot.Args.CallbackQueryEventArgs e)
         {
-            NewDirOnCallbackQuery(e);
+            if (api.IsDownload)
+            {
+                SendFile(e);
+            }
+            else
+            {
+                NewDirOnCallbackQuery(e);
+            }
+            
         }
 
+        private static void SendFile(CallbackQueryEventArgs e)
+        {
+            bot.SendDocumentAsync(msg.Chat.Id, new FileStream(path.path + "\\" + e.CallbackQuery.Data, FileMode.Open));
+        }
         private static void NewDirOnCallbackQuery(CallbackQueryEventArgs e)
         {
-            CdCommand cdCommand = new CdCommand();
+            
 
-            for (int i = 0; i < api.Directories.Count; i++)
-            {
-                if (e.CallbackQuery.Data == api.Directories[i].directory)
+            
+                CdCommand cdCommand = new CdCommand();
+
+                for (int i = 0; i < api.Directories.Count; i++)
                 {
-                    SendTextMess($"cd .{api.Directories[i].directory}");
+                    if (e.CallbackQuery.Data == api.Directories[i].directory)
+                    {
+                        SendTextMess($"cd .{api.Directories[i].directory}");
+                    }
                 }
-            }
+            
+            
         }
 
         private static async void Bot_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e)

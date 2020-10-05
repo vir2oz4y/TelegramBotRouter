@@ -17,6 +17,7 @@ namespace TelegramBotRouter.Json
             this.Files = new List<Files>();
             this.Directories = new List<Directories>();
             this.Helps = new List<Helps>();
+            this.IsDownload = result.IsDownload;
 
             AddAll(result);
             
@@ -55,6 +56,7 @@ namespace TelegramBotRouter.Json
 
         public string Path { get; set; }
         public string MessageAfterCommand { get; set; }
+        public bool IsDownload { get; set; }
         public List<Files> Files  { get; set; }
         public List<Directories> Directories { get; set; }
         public List<Helps> Helps { get; set; }

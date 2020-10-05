@@ -6,6 +6,7 @@ namespace TelegramBotRouter
 {
     class Result
     {
+        public bool IsDownload { get; set; } = false;
         public string MessageAfterCommand { get; set; } = null;
         public List<string> directories { get; set; } = new List<string>();
         public List<string> files { get; set; } = new List<string>();
@@ -26,7 +27,6 @@ namespace TelegramBotRouter
             infoHelp.Clear();
         }
 
-
         public void AddHelpArray()
         {
             Clear();
@@ -36,7 +36,7 @@ namespace TelegramBotRouter
             }
         }
 
-        private void AddFileInArray(string[] file)
+        public void AddFileInArray(string[] file)
         {
             for (int i = 0; i < file.Length; i++)
             {

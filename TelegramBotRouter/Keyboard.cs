@@ -11,34 +11,64 @@ namespace TelegramBotRouter
 
         public static InlineKeyboardMarkup GetKeyboard(Api api)
         {
-
             double countCell = 4;
-            double countRow = Math.Ceiling(api.Directories.Count / countCell);
-            InlineKeyboardMarkup _keyboard;
-
-            InlineKeyboardButton[][] button = new InlineKeyboardButton[(int)countRow][];
-
-
-            for (int i = 0; i < countRow; i++)
+            if (api.IsDownload==false)
             {
-                Array.Resize(ref button[i], (int)countCell);
+                
+                double countRow = Math.Ceiling(api.Directories.Count / countCell);
+                InlineKeyboardMarkup _keyboard;
 
-                if (i == countRow - 1 )
+                InlineKeyboardButton[][] button = new InlineKeyboardButton[(int)countRow][];
+
+
+                for (int i = 0; i < countRow; i++)
                 {
-                    countCell = api.Directories.Count - (countRow - 1) * countCell;
                     Array.Resize(ref button[i], (int)countCell);
+
+                    if (i == countRow - 1)
+                    {
+                        countCell = api.Directories.Count - (countRow - 1) * countCell;
+                        Array.Resize(ref button[i], (int)countCell);
+                    }
+
+                    for (int j = 0; j < countCell; j++)
+                    {
+
+                        button[i][j] = new InlineKeyboardButton { Text = api.Directories[i * (int)countCell + j].directory, CallbackData = api.Directories[i * (int)countCell + j].directory, };
+                    }
                 }
 
-                for (int j = 0; j < countCell; j++)
-                {
-                    
-                    button[i][j] = new InlineKeyboardButton { Text = api.Directories[i*(int)countCell+j].directory, CallbackData = api.Directories[i * (int)countCell + j].directory, };
-                }
+                _keyboard = new InlineKeyboardMarkup(button);
+                return _keyboard;
             }
+            else
+            {
+                double countRow = Math.Ceiling(api.Files.Count / countCell);
+                InlineKeyboardMarkup _keyboard;
 
-            _keyboard = new InlineKeyboardMarkup(button);
-            return _keyboard;
+                InlineKeyboardButton[][] button = new InlineKeyboardButton[(int)countRow][];
+
+
+                for (int i = 0; i < countRow; i++)
+                {
+                    Array.Resize(ref button[i], (int)countCell);
+
+                    if (i == countRow - 1)
+                    {
+                        countCell = api.Files.Count - (countRow - 1) * countCell;
+                        Array.Resize(ref button[i], (int)countCell);
+                    }
+
+                    for (int j = 0; j < countCell; j++)
+                    {
+
+                        button[i][j] = new InlineKeyboardButton { Text = api.Files[i * (int)countCell + j].file, CallbackData = api.Files[i * (int)countCell + j].file };
+                    }
+                }
+
+                _keyboard = new InlineKeyboardMarkup(button);
+                return _keyboard;
+            }
         }
-
     }
 }

@@ -14,13 +14,10 @@ namespace TelegramBotRouter.Cd
                 path.path = Directory.GetParent(path.path).FullName;
                 return path;
             }
-            catch 
+            catch
             {
                 return path;
             }
-            
-           
         }
-
     }
 }

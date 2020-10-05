@@ -6,6 +6,7 @@ using TelegramBotRouter.Dir;
 using TelegramBotRouter.Help;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using TelegramBotRouter.MessageText.Download;
 
 namespace TelegramBotRouter
 {
@@ -19,6 +20,7 @@ namespace TelegramBotRouter
             commands.Add(new DDirCommand());
             commands.Add(new FDDirCommand());
             commands.Add(new HelpCommand());
+            commands.Add(new DownloadCommand());
         }
 
     }
